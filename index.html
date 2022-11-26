@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kumaran Travels Admin Form</title>
+    <link rel="shortcut icon" href="icon.ico" type="image/x-icon">
+    <!-- css -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+</head>
+
+<body>
+    <div class="main">
+        <div class="center-align">
+            <img src="https://abishekmahi.github.io/kumarantravels/images/logo.png" width="70" alt="">
+        </div>
+
+        <form class="col s12" name="submit-to-google-sheet">
+            <h4 class="center-align">Admin Form to add new package</h4>
+            <label for="tour-type" class="lable">Select Tour Type</label>
+            <div class="row selection">
+                <label class="col s12 m4">
+                    <input class="with-gap" name="Tour Type" value="Domestic Train Tour" type="radio" checked />
+                    <span>Domestic Tour</span>
+                </label>
+                <label class="col s12 m4">
+                    <input class="with-gap" name="Tour Type" value="Special Tour" type="radio" />
+                    <span>Special Tour</span>
+                </label>
+                <label class="col s12 m4">
+                    <input class="with-gap" name="Tour Type" value="Foreign Tour" type="radio" />
+                    <span>Foreign Tour</span>
+                </label>
+            </div>
+            <div class="input-field col s12">
+                <input id="title" type="text" name="Package Title" required>
+                <label for="title">Package Title</label>
+            </div>
+            <div class="input-field col s12">
+                <input id="url" type="url" name="Package Image" required>
+                <label for="url">Image URL</label>
+            </div>
+            <div class="input-field col s12">
+                <input id="days" type="text" name="Days" required>
+                <label for="days">Days</label>
+            </div>
+            <div class="input-field col s12">
+                <input id="places" type="text" name="Places" required>
+                <label for="places">Places</label>
+            </div>
+            <div class="input-field col s12">
+                <textarea id="textarea1" rows="4" name="Content" class="materialize-textarea"></textarea>
+                <label for="textarea1">Content</label>
+            </div>
+            <div id="success">
+                <!-- <blockquote class='green-text'>Package added Successfully...</blockquote> -->
+            </div>
+            <div class="center-align">
+                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </form>
+    </div>
+    <!-- Form Type Package Title Package Image Days Places Content Timestamp -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        const scriptURL =
+            'https://script.google.com/macros/s/AKfycbyK3Gqm51f549f0N90xjv4kkuxVjYOuUbqV-sWROOYQqQXvNpx3byHbwAE9dcVKfpPH/exec'
+        const form = document.forms['submit-to-google-sheet']
+
+        form.addEventListener('submit', e => {
+            e.preventDefault()
+            fetch(scriptURL, {
+                    method: 'POST',
+                    body: new FormData(form)
+                })
+                .then(response => {
+                    $('#success').html(
+                        "<blockquote class='green-text'>Package added Successfully...</blockquote>");
+                    console.log('Success!', response);
+                    form.reset();
+                })
+                .catch(error => console.error('Error!', error.message))
+        })
+    </script>
+</body>
+
+</html>
