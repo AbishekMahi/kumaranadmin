@@ -44,16 +44,12 @@ label {
 @media only screen and (max-width: 768px) {
     body {
         background: url(images/phonebg.svg) no-repeat border-box;
-        /* background-size: cover;
-        display: flex;
-        align-items: center;
-        color: #000 !important;
-        justify-content: center;
-        height: 100vh; */
+        height: 100%;
+
     }
 
     .main {
         padding: 2rem;
-        margin: 2rem;
+        margin: 1rem;
     }
 }
