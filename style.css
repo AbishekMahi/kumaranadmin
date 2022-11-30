@@ -67,9 +67,11 @@ h1 {
     font-size: 1.15rem;
     line-height: 1.5;
 }
-#namePreview{
+
+#namePreview {
     padding-right: 1rem;
 }
+
 #imgPreview {
     width: 100%;
     padding: 2rem 5rem;
@@ -246,5 +248,12 @@ label span {
 
     .selection label {
         margin: 5px 10px;
+    }
+    .preview p {
+        padding-left: 1pc;
+    }
+    #imgPreview {
+        width: 100%;
+        padding: 1rem 0rem;
     }
 }
