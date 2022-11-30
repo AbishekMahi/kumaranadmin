@@ -5,74 +5,197 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kumaran Travels Admin Form</title>
+    <title>Admin Form - Kumaran Travels</title>
     <link rel="shortcut icon" href="icon.ico" type="image/x-icon">
     <!-- css -->
     <link rel="stylesheet" href="style.css">
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body>
-    <div class="main">
-        <div class="center-align">
-            <img src="https://abishekmahi.github.io/kumarantravels/images/logo.png" width="70" alt="">
-        </div>
+    <main onclick="preview()">
+        <form id="regForm" name="submit-to-google-sheet">
+            <center>
+                <img class="logo" src="http://kumaran.supremecenter300.com/images/full-txt-logo.png" alt="kumaran_logo">
+            </center>
+            <p id="demo"></p>
+            <!-- One "tab" for each step in the form: -->
+            <div class="tab">
+                <h1>Admin Form to add new package</h1>
+                Select Tour Type:
+                <div class="row selection">
+                    <label class="col">
+                        <input class="with-gap" name="Tour Type" value="Domestic Train Tour" type="radio" checked />
+                        <span>Domestic Tour</span>
+                    </label>
+                    <label class="col">
+                        <input class="with-gap" name="Tour Type" value="Special Tour" type="radio" />
+                        <span>Special Tour</span>
+                    </label>
+                    <label class="col">
+                        <input class="with-gap" name="Tour Type" value="Foreign Tour" type="radio" />
+                        <span>Foreign Tour</span>
+                    </label>
+                </div>
+                Tour ID:
+                <p><input placeholder="Enter Tour ID" required oninput="this.className = ''" id="tour_id" type="text"
+                        name="Tour Id" required></p>
+                <p class=""></p>
+                Package Title:
+                <p><input placeholder="Enter Package Title" required oninput="this.className = ''" id="title"
+                        type="text" name="Package Title" required></p>
+                Image URL:
+                <p><input placeholder="Enter Image Url" oninput="this.className = ''" id="url" name="Package Image"
+                        required type="url"></p>
+                Days:
+                <p><input placeholder="No. Of Days & Nights" oninput="this.className = ''" id="days" type="text"
+                        name="Days" required></p>
+                Places:
+                <p><input placeholder="Places" oninput="this.className = ''" id="places" type="text" name="Places"
+                        required>
+                </p>
+            </div>
+            <div class="tab">
+                <h1>Admin Form to add new package</h1>
+                <p id="demo1"></p>
+                About Place:
+                <p> <textarea id="about" placeholder="Add description about the place" oninput="this.className = ''"
+                        rows="4" name="About Place" required></textarea>
+                </p>
+                Itinerary (Tour Plans):
+                <div class="rich-btn">
+                    <div id="bold"><i class="fas fa-bold"></i></div>
+                    <div id="italic"><i class="fas fa-italic"></i></div>
+                    <div id="underline"><i class="fas fa-underline"></i></div>
+                </div>
+                <p> <textarea id="Itinerary" placeholder="Add Tour Plans (Day1, Day2, Day3 etc..)"
+                        oninput="this.className = ''" rows="6" name="Itinerary" required></textarea>
+                </p>
+                <script>
+                    $(function () {
+                        $('#bold').on('click', function () {
+                            var text = $('#Itinerary');
+                            text.val(text.val() + '<b> Bold_text </b>');
+                        });
+                        $('#italic').on('click', function () {
+                            var text = $('#Itinerary');
+                            text.val(text.val() + '<i> Italic_text </i>');
+                        });
+                        $('#underline').on('click', function () {
+                            var text = $('#Itinerary');
+                            text.val(text.val() + '<u> Underlined_text </u>');
+                        });
+                    });
+                </script>
+            </div>
 
-        <form class="col s12" name="submit-to-google-sheet">
-            <h4 class="center-align">Admin Form to add new package</h4>
-            <label for="tour-type" class="lable">Select Tour Type</label>
-            <div class="row selection">
-                <label class="col s12 m4">
-                    <input class="with-gap" name="Tour Type" value="Domestic Train Tour" type="radio" checked />
-                    <span>Domestic Tour</span>
-                </label>
-                <label class="col s12 m4">
-                    <input class="with-gap" name="Tour Type" value="Special Tour" type="radio" />
-                    <span>Special Tour</span>
-                </label>
-                <label class="col s12 m4">
-                    <input class="with-gap" name="Tour Type" value="Foreign Tour" type="radio" />
-                    <span>Foreign Tour</span>
-                </label>
+            <div class="tab">
+                <h1>Admin Form to add new package</h1>
+
+                Admin Name:
+                <p><input placeholder="Enter Your Name" oninput="this.className = ''" id="name" type="text"
+                        name="Admin Name" required>
+                </p>
+                Package Price:
+                <p><input placeholder="Enter Package Price" oninput="this.className = ''" id="price" type="text"
+                        name="Price" required>
+                </p>
             </div>
-            <div class="input-field col s12">
-                <input id="title" type="text" name="Package Title" required>
-                <label for="title">Package Title</label>
+
+            <div style="overflow:auto;">
+                <div style="float:right;">
+                    <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                    <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                    <button type="submit" id="submitBtn" name="action">Submit</button>
+                </div>
             </div>
-            <div class="input-field col s12">
-                <input id="url" type="url" name="Package Image" required>
-                <label for="url">Image URL</label>
-            </div>
-            <div class="input-field col s12">
-                <input id="days" type="text" name="Days" required>
-                <label for="days">Days</label>
-            </div>
-            <div class="input-field col s12">
-                <input id="places" type="text" name="Places" required>
-                <label for="places">Places</label>
-            </div>
-            <div class="input-field col s12">
-                <textarea id="textarea1" rows="4" name="Content" class="materialize-textarea"></textarea>
-                <label for="textarea1">Content</label>
-            </div>
-            <div id="success">
-                <!-- <blockquote class='green-text'>Package added Successfully...</blockquote> -->
-            </div>
-            <div class="center-align">
-                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-                    <i class="material-icons right">send</i>
-                </button>
+
+            <!-- Circles which indicates the steps of the form: -->
+            <div style="text-align:center;margin-top:40px;">
+                <span class="step"></span>
+                <span class="step"></span>
+                <span class="step"></span>
             </div>
         </form>
-    </div>
+
+        <!-- preview -->
+        <script>
+            function preview() {
+                var title = document.getElementById("title").value;
+                var days = document.getElementById("days").value;
+                var imgurl = document.getElementById("url").value;
+                var places = document.getElementById("places").value;
+                var about = document.getElementById("about").value;
+                var itinerary = document.getElementById("Itinerary").value;
+                var adminName = document.getElementById("name").value;
+                var price = document.getElementById("price").value;
+
+                document.getElementById("titlePreview").innerHTML = title;
+                document.getElementById("daysPreview").innerHTML = days;
+                document.getElementById("imgPreview").src = imgurl;
+                document.getElementById("placesPreview").innerHTML = places;
+                document.getElementById("aboutPreview").innerHTML = about;
+                document.getElementById("planPreview").innerHTML = itinerary;
+                document.getElementById("namePreview").innerHTML = adminName;
+                document.getElementById("pricePreview").innerHTML = price;
+
+            }
+        </script>
+        <div class="preview">
+            <h1>Preview</h1>
+
+            <!-- modal -->
+            <div class="modal-content">
+                <div>
+                    <h2 class="modal-title" id="titlePreview">
+                    </h2>
+                </div>
+                <div class="modal-body">
+                    <img id="imgPreview" src="" alt="tour img here">
+                    <h5><i class="fas fa-suitcase-rolling"></i> Overview :</h5>
+                    <p id="daysPreview"></p>
+                    <p id="placesPreview"></p>
+                    <p id="pricePreview"></p>
+                    <hr>
+                    <h5><i class="fas fa-map-marker-alt"></i> About This Place :</h5>
+                    <p id="aboutPreview">
+                        <!-- The Kashi Vishwanath Temple is a famous Hindu temple dedicated to Lord Shiva.
+                        It is located in Vishwanath Gali of Varanasi, Uttar Pradesh in India. The temple
+                        stands on the western bank of the holy river Ganga, and is one of the twelve
+                        Jyotirlingas, the holiest of Shiva temples. -->
+                    </p>
+                    <hr>
+                    <h5><i class="fas fa-bus-alt"></i> Itinerary :</h5>
+                    <p id="planPreview">
+                        <!-- <b>Day 1:</b>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, voluptates
+                        dicta? Totam eligendi autem dolorum modi, nulla nostrum fugiat tenetur
+                        consequatur quisquam tempora vel nisi nobis, assumenda sequi iste neque?<br>
+                        <b>Day 2:</b>
+                        consectetur adipisicing elit. Dolore, voluptates
+                        dicta? Totam eligendi autem dolorum modi, nulla nostrum fugiat tenetur
+                        consequatur quisquam tempora vel nisi nobis, assumenda sequi iste neque?<br>
+                        <b>Day 3:</b>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, voluptates
+                        dicta? Totam eligendi autem dolorum modi, nulla nostrum fugiat tenetur
+                        consequatur quisquam tempora vel nisi<br>
+                        <b>Day 4:</b>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, voluptates
+                        dicta? Totam eligendi nostrum fugiat tenetur
+                        consequatur quisquam tempora vel nisi nobis, assumenda sequi iste <br> -->
+                    </p>
+                </div>
+                <div style="overflow:auto;">
+                    <div style="float:right;"><em>Posted by <span id="namePreview"></span> </em>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
     <!-- Form Type Package Title Package Image Days Places Content Timestamp -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
         const scriptURL =
             'https://script.google.com/macros/s/AKfycbyK3Gqm51f549f0N90xjv4kkuxVjYOuUbqV-sWROOYQqQXvNpx3byHbwAE9dcVKfpPH/exec'
@@ -85,13 +208,120 @@
                     body: new FormData(form)
                 })
                 .then(response => {
-                    $('#success').html(
-                        "<blockquote class='green-text'>Package added Successfully...</blockquote>");
+                    $('form').html(
+                        "<center><blockquote class='green-text'>Package added Successfully...</blockquote><button class='addBtn' onClick='window.location.reload()'';><i class='fas fa-plus'></i> Add New</button></center>"
+                    );
                     console.log('Success!', response);
                     form.reset();
                 })
                 .catch(error => console.error('Error!', error.message))
         })
+    </script>
+    <!-- tabs -->
+    <script>
+        var currentTab = 0; // Current tab is set to be the first tab (0)
+        showTab(currentTab); // Display the current tab
+
+        function showTab(n) {
+            // This function will display the specified tab of the form...
+            var x = document.getElementsByClassName("tab");
+            x[n].style.display = "block";
+            //... and fix the Previous/Next buttons:
+            if (n == 0) {
+                document.getElementById("prevBtn").style.display = "none";
+                document.getElementById("nextBtn").style.display = "inline";
+
+            } else {
+                document.getElementById("prevBtn").style.display = "inline";
+            }
+            if (n == (x.length - 1)) {
+                // document.getElementById("nextBtn").innerHTML = "Submit";
+                document.getElementById("nextBtn").style.display = "none";
+                document.getElementById("prevBtn").style.display = "inline";
+                document.getElementById("submitBtn").style.display = "inline";
+
+            } else {
+                document.getElementById("nextBtn").innerHTML = "Next";
+            }
+            if (n == (x.length + 1)) {
+                // document.getElementById("nextBtn").innerHTML = "Submit";
+                document.getElementById("nextBtn").style.display = "none";
+                document.getElementById("prevBtn").style.display = "inline";
+                document.getElementById("submitBtn").style.display = "inline";
+
+            } else {
+                document.getElementById("nextBtn").innerHTML = "Next";
+            }
+            //... and run a function that will display the correct step indicator:
+            fixStepIndicator(n)
+        }
+
+        function nextPrev(n) {
+            // This function will figure out which tab to display
+            var x = document.getElementsByClassName("tab");
+            // Exit the function if any field in the current tab is invalid:
+            if (n == 1 && !validateForm()) return false;
+            // Hide the current tab:
+            x[currentTab].style.display = "none";
+            // Increase or decrease the current tab by 1:
+            currentTab = currentTab + n;
+            // if you have reached the end of the form...
+            if (currentTab >= x.length) {
+                // ... the form gets submitted:
+                document.getElementById("regForm").submit();
+                return false;
+            }
+            // Otherwise, display the correct tab:
+            showTab(currentTab);
+        }
+
+        function validateForm() {
+            // This function deals with validation of the form fields
+            var x, y, i, valid = true;
+            x = document.getElementsByClassName("tab");
+            y = x[currentTab].querySelectorAll("input, textarea");
+            // A loop that checks every input field in the current tab:
+            for (i = 0; i < y.length; i++) {
+                // If a field is empty...
+                if (y[i].value == "") {
+                    // add an "invalid" class to the field:
+                    y[i].className += "invalid";
+                    text = "Please fill out all required fields.";
+                    document.getElementById("demo").innerHTML = text;
+                    // document.getElementById("demo1").innerHTML = text;
+                    setTimeout(function () {
+                        document.getElementById("demo").innerHTML = "";
+                    }, 3000);
+                    // setTimeout(function () {
+                    //     document.getElementById("demo1").innerHTML = "";
+                    // }, 3000);
+
+                    // and set the current valid status to false
+                    valid = false;
+                } else {
+                    // document.getElementById("demo").innerHTML = text;
+                    // document.getElementById("demo1").innerHTML = 'text';
+                }
+            }
+            // If the valid status is true, mark the step as finished and valid:
+            if (valid) {
+                document.getElementsByClassName("step")[currentTab].className += " finish";
+            }
+            return valid; // return the valid status
+        }
+
+        function fixStepIndicator(n) {
+            // This function removes the "active" class of all steps...
+            var i, x = document.getElementsByClassName("step");
+            for (i = 0; i < x.length; i++) {
+                x[i].className = x[i].className.replace(" active", "");
+            }
+            //... and adds the "active" class on the current step:
+            x[n].className += " active";
+        }
+    </script>
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
+        integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous">
     </script>
 </body>
 

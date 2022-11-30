@@ -1,55 +1,250 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-body {
-    font-family: 'Montserrat', sans-serif;
-    background: url(images/Hexagon.svg) no-repeat border-box;
-    background-size: cover;
-    display: flex;
-    align-items: center;
-    color: #000 !important;
-    justify-content: center;
-    /* width: 100vh; */
-    height: 100vh;
+* {
+    box-sizing: border-box;
 }
 
-.main {
-    background-color: white;
-    padding: 1rem 3rem 3rem;
-    min-width: 40%;
+body {
+    background-color: #f1f1f1;
+}
+
+main {
+    background-color: #ffffff;
+    margin: 100px auto;
+    font-family: Raleway;
+    /* font-weight: 600; */
+    padding: 40px;
+    width: 70%;
+    min-width: 300px;
+}
+
+blockquote {
+    color: rgb(0, 179, 30);
+    text-align: center;
+    font-size: larger;
+    margin: 3rem;
+}
+
+.addBtn {
+    background-color: #04AA6D;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 17px;
+    font-family: Raleway;
+    cursor: pointer;
+    margin-bottom: 3rem;
+}
+
+#regForm {
+    font-weight: 600;
+}
+
+.logo {
+    height: 100px;
 }
 
 h1 {
-    font-size: larger;
+    text-align: center;
 }
 
-.lable {
-    margin-left: 10px !important;
-    font-size: 16px;
+/* preview */
+.preview h2 {
+    font-size: 24px;
+}
+
+.preview h5 {
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.preview p {
+    font-size: 1rem;
+    line-height: 1.5;
+    padding-left: 2pc;
+}
+
+.preview p b {
+    font-size: 1.15rem;
+    line-height: 1.5;
+}
+#namePreview{
+    padding-right: 1rem;
+}
+#imgPreview {
+    width: 100%;
+    padding: 2rem 5rem;
+}
+
+p input,
+textarea {
+    padding: 10px;
+    width: 100%;
+    font-size: 17px;
+    font-family: Raleway;
+    border: 1px solid #aaaaaa;
+}
+
+/* Mark input boxes that gets an error on validation: */
+.invalid {
+    background-color: #ffdddd;
+}
+
+/* Hide all steps by default: */
+.tab {
+    display: none;
+}
+
+input:required:valid,
+textarea:required:valid,
+textarea:valid,
+input:valid {
+    border-color: green;
+}
+
+textarea:required:invalid,
+textarea:invalid,
+input:required:invalid,
+input:invalid {
+    border-color: rgb(255, 0, 0);
+}
+
+input:required:focus:valid {
+    background: url("https://assets.digitalocean.com/labs/icons/hand-thumbs-up.svg") no-repeat 95% 50% lightgreen;
+    background-size: 25px;
+    border: green 1.2px solid;
+
+}
+
+input:focus:invalid {
+    background: url("https://assets.digitalocean.com/labs/icons/exclamation-triangle-fill.svg") no-repeat 95% 50% rgb(255, 226, 226);
+    background-size: 25px;
+    border: rgb(255, 0, 0) 1.2px solid;
+}
+
+input:indeterminate {
+    background-color: grey;
+}
+
+#demo,
+#demo1 {
+    color: rgb(255, 0, 0);
+    border-left: rgb(255, 51, 0) 4px solid;
+    padding-left: 10px;
+    border-radius: 5px;
 }
 
 .selection {
-    margin-top: 20px;
+    width: 100%;
+    margin: 1em auto;
+    flex-wrap: nowrap;
+    display: flex;
+    flex-direction: row;
+    font-weight: normal;
+    justify-content: space-around;
+    align-items: center;
 }
 
-/* label color */
-.input-field label,
-label {
-    color: rgba(0, 0, 0, 0.877) !important;
+.selection label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
 }
 
-.input-field {
-    margin: 1.2rem auto !important;
+label span {
+    font-size: 17px;
+    width: 100%;
+    margin-left: 5px;
 }
+
+.rich-btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.rich-btn div {
+    cursor: pointer;
+    background-color: #f0f0f0;
+    border: rgb(88, 88, 88) 1px solid;
+    padding: 5px 8px;
+    font-size: medium;
+    font-weight: bold;
+    margin: 8px 0px -1em 0;
+}
+
+#nextBtn,
+#submitBtn {
+    background-color: #04AA6D;
+}
+
+#submitBtn {
+    display: none;
+}
+
+#prevBtn {
+    background-color: #bbbbbb;
+}
+
+#prevBtn,
+#nextBtn,
+#submitBtn {
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 17px;
+    font-family: Raleway;
+    cursor: pointer;
+}
+
+#submitBtn:hover,
+#nextBtn:hover,
+.addBtn:hover,
+#prevBtn:hover {
+    opacity: 0.8;
+}
+
+/* Make circles that indicate the steps of the form: */
+.step {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbbbbb;
+    border: none;
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.5;
+}
+
+.step.active {
+    opacity: 1;
+}
+
+/* Mark the steps that are finished and valid: */
+.step.finish {
+    background-color: #04AA6D;
+}
+
+
 
 @media only screen and (max-width: 768px) {
-    body {
-        background: url(images/phonebg.svg) no-repeat border-box;
-        height: 100%;
-
+    main {
+        margin: 0px auto;
+        padding: 20px;
+        width: 100%;
+        min-width: 300px;
     }
 
-    .main {
-        padding: 2rem;
-        margin: 1rem;
+    .logo {
+        height: 100px;
+    }
+
+    .selection {
+        flex-wrap: wrap;
+    }
+
+    .selection label {
+        margin: 5px 10px;
     }
 }
