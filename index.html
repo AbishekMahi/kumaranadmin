@@ -11,10 +11,11 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="index.js"></script>
 </head>
 
 <body>
-    <main onclick="preview()">
+    <main onmouseover="preview()">
         <form id="regForm" name="submit-to-google-sheet">
             <center>
                 <img class="logo" src="images/logo.png" alt="kumaran_logo">
@@ -55,6 +56,7 @@
                 <p><input placeholder="Places" oninput="this.className = ''" id="places" type="text" name="Places"
                         required>
                 </p>
+
             </div>
             <div class="tab">
                 <h1>Admin Form to add new package</h1>
@@ -65,12 +67,16 @@
                 </p>
                 Itinerary (Tour Plans):
                 <div class="rich-btn">
-                    <div id="bold"><i class="fas fa-bold"></i></div>
-                    <div id="italic"><i class="fas fa-italic"></i></div>
-                    <div id="underline"><i class="fas fa-underline"></i></div>
+                    <div id="bold" title="Bold"><i class="fas fa-bold"></i></div>
+                    <div id="italic" title="Italic"><i class="fas fa-italic"></i></div>
+                    <div id="underline" title="Underline"><i class="fas fa-underline"></i></div>
                 </div>
                 <p> <textarea id="Itinerary" placeholder="Add Tour Plans (Day1, Day2, Day3 etc..)"
-                        oninput="this.className = ''" rows="6" name="Itinerary" required></textarea>
+                        oninput="this.className = ''" rows="8" name="Itinerary" required>
+<!-- Dummy Content -->
+<b>Day 1:</b>Lorem ipsum dolor sit amet consectetur adipisicing elit. <br>
+<b>Day 2:</b> consectetur adipisicing elit. Dolore, voluptates dicta? <br>
+                    </textarea>
                 </p>
                 <script>
                     $(function () {
@@ -92,7 +98,6 @@
 
             <div class="tab">
                 <h1>Admin Form to add new package</h1>
-
                 Admin Name:
                 <p><input placeholder="Enter Your Name" oninput="this.className = ''" id="name" type="text"
                         name="Admin Name" required>
@@ -101,7 +106,38 @@
                 <p><input placeholder="Enter Package Price" oninput="this.className = ''" id="price" type="text"
                         name="Price" required>
                 </p>
+                What we provide:
+                <div class="row selection">
+                    <label class="col">
+                        <input class="with-gap" name="Providing" id="Food"
+                            value="<p><i class='fas fa-utensils'></i><span>Food</span></p>" type="checkbox" checked />
+                        <span>Food</span>
+                    </label>
+                    <label class="col">
+                        <input class="with-gap" name="Providing" id="Accomodation"
+                            value="<p><i class='fas fa-bed'></i><span>Accomodation</span></p>" type="checkbox" />
+                        <span>Accomodation</span>
+                    </label>
+                    <label class="col">
+                        <input class="with-gap" name="Providing" id="Transportation"
+                            value="<p><i class='fas fa-plane'></i><span>Transportation</span></p>" type="checkbox" />
+                        <span>Transportation</span>
+                    </label>
+                    <label class="col">
+                        <input class="with-gap" name="Providing" id="SightSeeing"
+                            value="<p><i class='fas fa-map-marker-alt'></i><span>Sight Seeing</span></p>"
+                            type="checkbox" />
+                        <span>Sight Seeing</span>
+                    </label>
+                    <label class="col">
+                        <input class="with-gap" name="Providing" id="Transfers"
+                            value="<p><i class='fas fa-bus-alt'></i><span>Transfers</span></p>" type="checkbox" />
+                        <span>Transfers</span>
+                    </label>
+                </div>
+                <p><input name="Providings" type="text" id="provide" hidden readonly></p>
             </div>
+
 
             <div style="overflow:auto;">
                 <div style="float:right;">
@@ -119,44 +155,23 @@
             </div>
         </form>
 
-        <!-- preview -->
-        <script>
-            function preview() {
-                var title = document.getElementById("title").value;
-                var days = document.getElementById("days").value;
-                var imgurl = document.getElementById("url").value;
-                var places = document.getElementById("places").value;
-                var about = document.getElementById("about").value;
-                var itinerary = document.getElementById("Itinerary").value;
-                var adminName = document.getElementById("name").value;
-                var price = document.getElementById("price").value;
-
-                document.getElementById("titlePreview").innerHTML = title;
-                document.getElementById("daysPreview").innerHTML = days;
-                document.getElementById("imgPreview").src = imgurl;
-                document.getElementById("placesPreview").innerHTML = places;
-                document.getElementById("aboutPreview").innerHTML = about;
-                document.getElementById("planPreview").innerHTML = itinerary;
-                document.getElementById("namePreview").innerHTML = adminName;
-                document.getElementById("pricePreview").innerHTML = price;
-
-            }
-        </script>
         <div class="preview">
             <h1>Preview</h1>
-
             <!-- modal -->
             <div class="modal-content">
                 <div>
-                    <h2 class="modal-title" id="titlePreview">
+                    <h2 class="modal-title" id="titlePreview">Title
                     </h2>
                 </div>
                 <div class="modal-body">
                     <img id="imgPreview" src="" alt="tour img here">
                     <h5><i class="fas fa-suitcase-rolling"></i> Overview :</h5>
-                    <p id="daysPreview"></p>
-                    <p id="placesPreview"></p>
-                    <p id="pricePreview"></p>
+                    <p><b>Days :</b> <span id="daysPreview"></span></p>
+                    <p><b>Places :</b> <span id="placesPreview"></span></p>
+                    <p><b>Price :</b> <span id="pricePreview"></span></p>
+                    <!-- <hr> -->
+                    <div id="whatwe">
+                    </div>
                     <hr>
                     <h5><i class="fas fa-map-marker-alt"></i> About This Place :</h5>
                     <p id="aboutPreview">
