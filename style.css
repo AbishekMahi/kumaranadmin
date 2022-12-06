@@ -124,6 +124,15 @@ label span {
     cursor: pointer;
 }
 
+.hint {
+    font-weight: 400 !important;
+    color: #008655;
+}
+.hint a{
+    font-weight: 600 !important;
+    /* color: #008655; */
+}
+
 input[type="radio"] {
     background-color: transparent;
     border: .0625em solid rgba(255, 255, 255, .5);
@@ -303,8 +312,6 @@ label span {
 .step.finish {
     background-color: #04AA6D;
 }
-
-
 
 @media only screen and (max-width: 768px) {
     main {
